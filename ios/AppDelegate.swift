@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import Firebase
 
 @UIApplicationMain
@@ -18,13 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // [START default_firestore]
+        // MARK: Firebase - Init
         FirebaseApp.configure()
         
-        let db = Firestore.firestore()
-        // [END default_firestore]
+        // MARK: Firebase - Armazenamento
+        //let db = Firestore.firestore()
+        //print(db) // silence warning
         
-        print(db) // silence warning
+        // MARK: Firebase - Autentição
+       // let auth =
+        //let authUI = FUIAuth.defaultAuthUI()
+        // You need to adopt a FUIAuthDelegate protocol to receive callback
+        //authUI?.delegate = self as? FUIAuthDelegate
+            //authUI?.delegate = self
+        
         
         return true
     }
