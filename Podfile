@@ -6,6 +6,10 @@ target 'ios' do
   use_frameworks!
 
   # Pods for ios
+    pod 'Firebase'
+    pod 'Firebase/Auth'
+  
+  # Database
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
 

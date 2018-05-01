@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // MARK: Firebase - Armazenamento
-        //let db = Firestore.firestore()
-        //print(db) // silence warning
+        let db = Firestore.firestore()
+        print(db) // silence warning
         
         // MARK: Firebase - Autentição
        // let auth =

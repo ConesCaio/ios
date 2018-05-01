@@ -28,6 +28,18 @@ class LoginViewController: UIViewController {
                 }
                 print("Logado com Sucesso")
                 print("Tomar alguma ação")
+                
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = "caio"
+                
+                changeRequest?.commitChanges(completion: { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    print("atualizou com sucesso")
+                })
+                
             }
         } else {
             print("email/password can't be empty")
