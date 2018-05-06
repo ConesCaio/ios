@@ -23,15 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // MARK: Firebase - Armazenamento
-        let db = Firestore.firestore()
-        print(db) // silence warning
+        //let db = Firestore.firestore()
+        //print(db) // silence warning
         
-        // MARK: Firebase - Autentição
-       // let auth =
-        //let authUI = FUIAuth.defaultAuthUI()
-        // You need to adopt a FUIAuthDelegate protocol to receive callback
-        //authUI?.delegate = self as? FUIAuthDelegate
-            //authUI?.delegate = self
+//        func setRootViewController() {
+//            if Auth.auth().currentUser != nil {
+//                // Set Your home view controller Here as root View Controller
+//            } else {
+//                // Set you login view controller here as root view controller
+//            }
+//        }
         
         
         return true
