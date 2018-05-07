@@ -15,7 +15,6 @@ class profileViewController: UIViewController {
     @IBOutlet weak var cpfField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var cellphoneField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
     
     var user: User!
     
@@ -24,18 +23,27 @@ class profileViewController: UIViewController {
         
         // Definir as informações do usuário
         self.user = User.init()
-        self.user.currentUser()
-        
-        // Mostra na tela os dados do usuário
-        self.userNameField.text = user.name
-        self.cpfField.text = user.cpf
-        self.emailField.text = user.email
-        self.cellphoneField.text = user.phone
-        //@Gui - Essas informação não estão sendo mostradas na tela pois o self.user.currentUser() é uma propriedade que roda assicronamente; Coloquei elas no método save, somente para testar e provar isso. Talvez possa resolver isso implementando um retorno na classe "currentUser" que retorne true ou false e gerar uma condição aqui no viewDidLoad. mas não sei se só isso será suficiente.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.user.currentUser { (error) in
+            if error == true {
+                //@Gui - mostrar mensgame de erro
+            }
+            self.userNameField.text = self.user.name
+            self.cpfField.text = self.user.cpf
+            self.emailField.text = self.user.email
+            self.cellphoneField.text = self.user.phone
+        }
     }
     
     @IBAction func logout(_ sender: Any) {
-        if user.logout() == true {
+        
+        if user.logout() == false {
+            self.user.name = ""
+            self.user.email = ""
+            self.user.phone = ""
+            self.user.cpf = ""
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "loginVC")
             self.present(controller, animated: true, completion: nil)
@@ -45,13 +53,14 @@ class profileViewController: UIViewController {
     }
     
     @IBAction func save(_ sender: Any) {
-        
-        //@Gui - essa classe deve pegar as infromações do TextField, atribuir ao objeto user e depois chamar user.updateUserInformation;
-        
-        self.userNameField.text = user.name
-        self.cpfField.text = user.cpf
-        self.emailField.text = user.email
-        self.cellphoneField.text = user.phone
+        self.user.updateUserInformation(name: self.userNameField.text!, phone: cellphoneField.text!, cpf: cpfField.text!)
+        //@Gui - não estou tratando o erro de update, se vc quiser aplicar um completion para tratar isso, beleza!
+    }
+    
+    @IBAction func changePassword(_ sender: Any) {
+        self.user.updatePassword()
+        //Gui - podemos melhorar esse método assim como o updateUserInformation
+        //Gui - você pode exibir um alerta falando que um email foi enviando com o link de recuperação de senha
     }
     
 }

@@ -152,7 +152,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKY-1t-qkY">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKY-1t-qkY">
                                 <rect key="frame" x="16" y="265" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -165,13 +165,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c5b-EW-UH3">
-                                <rect key="frame" x="16" y="371" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CPF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2R-rk-ZGQ">
                                 <rect key="frame" x="16" y="212" width="343" height="30"/>
@@ -188,7 +181,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F5-UB-RIa">
-                                <rect key="frame" x="160" y="487" width="55" height="30"/>
+                                <rect key="frame" x="160" y="420" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SALVAR"/>
                                 <connections>
@@ -203,6 +196,14 @@
                                     <action selector="logout:" destination="t1B-3o-scA" eventType="touchUpInside" id="dHb-BH-dKR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-95-ajU">
+                                <rect key="frame" x="129" y="474" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ALTERAR SENHA"/>
+                                <connections>
+                                    <action selector="changePassword:" destination="t1B-3o-scA" eventType="touchUpInside" id="cCh-3L-VjQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EQ9-KO-rHO"/>
@@ -212,7 +213,6 @@
                         <outlet property="cellphoneField" destination="Z8a-os-QYP" id="YAI-N5-Hk0"/>
                         <outlet property="cpfField" destination="i2R-rk-ZGQ" id="dHM-gG-0hL"/>
                         <outlet property="emailField" destination="uKY-1t-qkY" id="YHC-PM-kK4"/>
-                        <outlet property="passwordField" destination="c5b-EW-UH3" id="HCe-fQ-Rkv"/>
                         <outlet property="userNameField" destination="y8j-40-SGo" id="i5x-YW-FhX"/>
                     </connections>
                 </viewController>
@@ -284,7 +284,7 @@
                     </view>
                     <connections>
                         <outlet property="newCPFField" destination="bDb-gW-7cI" id="ufu-gv-Ohy"/>
-                        <outlet property="newCelphoneField" destination="5Bn-HY-igp" id="SAf-J6-UvI"/>
+                        <outlet property="newCellPhoneField" destination="5Bn-HY-igp" id="FJa-Vo-EWL"/>
                         <outlet property="newEmailField" destination="vdH-X6-DGO" id="Zfw-Ju-NZw"/>
                         <outlet property="newNameField" destination="Zlu-9b-LSu" id="GCa-sq-HOv"/>
                         <outlet property="newPasswordField" destination="JVo-mM-rra" id="nyL-m9-NZK"/>
