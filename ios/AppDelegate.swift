@@ -19,22 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // MARK: Firebase - Init
+        // MARK: Firebase
         FirebaseApp.configure()
-        
-        // MARK: Firebase - Armazenamento
-        //let db = Firestore.firestore()
-        //print(db) // silence warning
-        
-//        func setRootViewController() {
-//            if Auth.auth().currentUser != nil {
-//                // Set Your home view controller Here as root View Controller
-//            } else {
-//                // Set you login view controller here as root view controller
-//            }
-//        }
-        
-        
+
         return true
     }
 
