@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		25129E6F2090EA4F00F7C092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25129E6E2090EA4F00F7C092 /* AppDelegate.swift */; };
-		25129E712090EA4F00F7C092 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25129E702090EA4F00F7C092 /* ViewController.swift */; };
 		25129E742090EA4F00F7C092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25129E722090EA4F00F7C092 /* Main.storyboard */; };
 		25129E762090EA5000F7C092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25129E752090EA5000F7C092 /* Assets.xcassets */; };
 		25129E792090EA5000F7C092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25129E772090EA5000F7C092 /* LaunchScreen.storyboard */; };
 		25129E812090EA6F00F7C092 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25129E802090EA6F00F7C092 /* GoogleService-Info.plist */; };
+		25388AC120A1F748005BA111 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25388AC020A1F748005BA111 /* UserService.swift */; };
 		255E5FD5209F458600AF0C62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255E5FD4209F458600AF0C62 /* User.swift */; };
 		25A296BC2097D27300C76587 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A296BB2097D27300C76587 /* LoginViewController.swift */; };
 		25A296C82097EB7800C76587 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A296C72097EB7800C76587 /* CreateUserViewController.swift */; };
@@ -24,12 +24,12 @@
 /* Begin PBXFileReference section */
 		25129E6B2090EA4F00F7C092 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25129E6E2090EA4F00F7C092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		25129E702090EA4F00F7C092 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		25129E732090EA4F00F7C092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25129E752090EA5000F7C092 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25129E782090EA5000F7C092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25129E7A2090EA5000F7C092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25129E802090EA6F00F7C092 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		25388AC020A1F748005BA111 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		255E5FD4209F458600AF0C62 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25A296BB2097D27300C76587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		25A296C72097EB7800C76587 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
@@ -73,15 +73,11 @@
 		25129E6D2090EA4F00F7C092 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				25129E6E2090EA4F00F7C092 /* AppDelegate.swift */,
-				25129E702090EA4F00F7C092 /* ViewController.swift */,
-				25129E722090EA4F00F7C092 /* Main.storyboard */,
-				25D5BA2D209C924900A07461 /* RestaurantsViewController.swift */,
-				25A296C72097EB7800C76587 /* CreateUserViewController.swift */,
-				25A296BB2097D27300C76587 /* LoginViewController.swift */,
-				25D5BA2F209D175300A07461 /* ProfileViewController.swift */,
-				255E5FD3209F457300AF0C62 /* Class */,
+				25388ABF20A1F6D6005BA111 /* View Controller */,
+				255E5FD3209F457300AF0C62 /* Services */,
 				25129E752090EA5000F7C092 /* Assets.xcassets */,
+				25129E722090EA4F00F7C092 /* Main.storyboard */,
+				25129E6E2090EA4F00F7C092 /* AppDelegate.swift */,
 				25129E772090EA5000F7C092 /* LaunchScreen.storyboard */,
 				25129E7A2090EA5000F7C092 /* Info.plist */,
 				25129E802090EA6F00F7C092 /* GoogleService-Info.plist */,
@@ -89,12 +85,24 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
-		255E5FD3209F457300AF0C62 /* Class */ = {
+		25388ABF20A1F6D6005BA111 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25D5BA2D209C924900A07461 /* RestaurantsViewController.swift */,
+				25A296C72097EB7800C76587 /* CreateUserViewController.swift */,
+				25A296BB2097D27300C76587 /* LoginViewController.swift */,
+				25D5BA2F209D175300A07461 /* ProfileViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		255E5FD3209F457300AF0C62 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				255E5FD4209F458600AF0C62 /* User.swift */,
+				25388AC020A1F748005BA111 /* UserService.swift */,
 			);
-			path = Class;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		32B32D37F049492BE7D26C7F /* Frameworks */ = {
@@ -245,8 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25388AC120A1F748005BA111 /* UserService.swift in Sources */,
 				25A296BC2097D27300C76587 /* LoginViewController.swift in Sources */,
-				25129E712090EA4F00F7C092 /* ViewController.swift in Sources */,
 				25D5BA30209D175300A07461 /* ProfileViewController.swift in Sources */,
 				25129E6F2090EA4F00F7C092 /* AppDelegate.swift in Sources */,
 				25D5BA2E209C924900A07461 /* RestaurantsViewController.swift in Sources */,

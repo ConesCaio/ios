@@ -7,29 +7,25 @@
 //
 
 import UIKit
-import Firebase
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var user: User!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = User.init()
     }
     
     @IBAction func didTapLogin(_ sender: Any) {
         if let email = self.emailTextField.text, let password = self.passwordTextField.text {
-            self.user.login(email: email, password: password) { (error) in
-                if error == true {
-                    print("email ou senha inválido")
-                    //@Gui - Mostrar um pop-up
-                    return
+            UserService().login(email: email, password: password) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    // GUI: mostrar pop-up de erro de acordo com ele
+                } else {
+                    self.dismiss(animated: true, completion: nil)
                 }
-                self.dismiss(animated: true, completion: nil)
             }
         }
     }
