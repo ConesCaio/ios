@@ -21,9 +21,6 @@ class User {
     init() {
     }
     
-    deinit {
-    }
-    
     init(uid: String, name: String, email: String, cpf: String, phone: String, profile: String) {
         self.uid = uid
         self.name = name
