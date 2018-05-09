@@ -9,19 +9,24 @@
 import UIKit
 import Firebase
 
-class RestaurantsViewController: UIViewController {
-
-    var db: Firestore!
+class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var restaurantsTableView: UITableView!
+    
+    var restaurants: [Restaurant] = []
+    let cellIdentifier = "CellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
-        
-        
+        RestaurantService().getRestaurants { (documents, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.restaurants = documents!
+                self.restaurantsTableView.reloadData()
+            }
+            print(self.restaurants)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +43,27 @@ class RestaurantsViewController: UIViewController {
         }
     }
     
+    // MARK: Data Source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.restaurants.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        
+        // Fetch Fruit
+        let restaurant = self.restaurants[indexPath.row]
+        
+        // Configure Cell
+        cell.textLabel?.text = restaurant.name
+        
+        return cell
+    }
     
 
     /*
