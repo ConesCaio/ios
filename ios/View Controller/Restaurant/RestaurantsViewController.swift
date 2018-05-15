@@ -14,7 +14,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var restaurantsTableView: UITableView!
     
     var restaurants: [Restaurant] = []
-    let cellIdentifier = "CellIdentifier"
+    let cellIdentifier = "RestaurantsCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,6 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
                 self.restaurants = documents!
                 self.restaurantsTableView.reloadData()
             }
-            print(self.restaurants)
         }
     }
     
@@ -65,15 +64,18 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "RestaurantsToCategories", sender: indexPath)
     }
-    */
-
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is CategoriesViewController {
+            let categorysVC = segue.destination as? CategoriesViewController
+            let i = sender as? IndexPath
+            categorysVC?.restaurant = self.restaurants[(i?.row)!]
+        }
+    }
+ 
 }
