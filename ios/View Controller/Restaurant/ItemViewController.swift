@@ -6,12 +6,23 @@
 //
 
 import UIKit
+import Firebase
 
 class ItemViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var item = Item()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        nameLabel.text = item.name
+        priceLabel.text = item.price
+        descriptionLabel.text = item.description
+        
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +31,14 @@ class ItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func order(_ sender: Any) {
+        
+        
+        
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 

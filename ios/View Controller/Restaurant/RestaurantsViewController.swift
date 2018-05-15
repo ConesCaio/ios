@@ -18,14 +18,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        RestaurantService().getRestaurants { (documents, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                self.restaurants = documents!
-                self.restaurantsTableView.reloadData()
-            }
-        }
+        self.getRestaurants()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,6 +35,18 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    func getRestaurants() {
+        RestaurantService().getRestaurants { (documents, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.restaurants = documents!
+                self.restaurantsTableView.reloadData()
+            }
+        }
+    }
+    
+    
     // MARK: Data Source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,11 +60,8 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        // Fetch Fruit
-        let restaurant = self.restaurants[indexPath.row]
-        
         // Configure Cell
-        cell.textLabel?.text = restaurant.name
+        cell.textLabel?.text = restaurants[indexPath.row].name
         
         return cell
     }

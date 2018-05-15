@@ -7,3 +7,25 @@
 //
 
 import Foundation
+import Firebase
+
+class Item {
+    var id: String?
+    var reference: DocumentReference?
+    var description: String?
+    var name: String?
+    var price: String?
+    
+    init() {
+    }
+    
+    init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
+        self.id = documentId
+        self.reference = reference
+        self.description = values["description"] as? String
+        self.name = values["name"] as? String
+        self.price = values["price"] as? String
+    }
+}
+
+

@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import Firebase
+
+class ItemService {
+    
+    func getItens(categoryReference: DocumentReference, completion: @escaping ([Item]?, Error?) -> ()) {
+        categoryReference.collection("item").getDocuments(completion: { (documents, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                var itens: [Item] = []
+                for document in (documents?.documents)! {
+                    let item = Item(withValues: document.data(), id: document.documentID, and: document.reference)
+                    itens.append(item)
+                }
+                completion(itens, nil)
+            }
+        })
+    }
+    
+}

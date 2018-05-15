@@ -7,21 +7,22 @@
 //
 
 import Foundation
+import Firebase
 
 class Menu {
-    var uid: String?
-    var stauts: Bool?
+    var id: String?
+    var reference: DocumentReference?
     var name: String?
-    var category: [Category] = []
-}
-
-class Category {
-    var name: String?
-    var item: [Item] = []
-}
-
-class Item {
-    var desciption: String?
-    var name: String?
-    var price: String?
+    var status: Bool?
+    var categorys: [Category]? = []
+    
+    init() {
+    }
+    
+    init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
+        self.id = documentId
+        self.reference = reference
+        self.name = values["name"] as? String
+        self.status = values["status"] as? Bool
+    }
 }

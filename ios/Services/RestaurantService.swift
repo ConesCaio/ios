@@ -12,28 +12,21 @@ import Firebase
 class RestaurantService {
     
     func getRestaurants(completion: @escaping ([Restaurant]?, Error?) -> ()) {
-        
         var restaurants: [Restaurant] = []
-        
         let db = Firestore.firestore()
         let userRef = db.collection("restaurants")
-        
         userRef.getDocuments { (documents, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(nil, error)
             } else {
                 for document in (documents?.documents)!{
-                    let restaurant = Restaurant()
-                    restaurant.cnpj = document.data()["cnpj"] as? String
-                    restaurant.name = document.data()["name"] as? String
-                    restaurant.owner = document.data()["owner"] as? String
-                    restaurant.phone = document.data()["phone"] as? String
+                    let restaurant = Restaurant(withValues: document.data(), id: document.documentID, and: document.reference)
                     restaurants.append(restaurant)
                 }
                 completion(restaurants, nil)
             }
         }
-    }
-    
+    }    
+
 }

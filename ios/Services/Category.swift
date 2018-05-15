@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import Firebase
+
+class Category {
+    var id: String?
+    var reference: DocumentReference?
+    var name: String?
+    var itens: [Item]? = []
+    
+    init() {
+    }
+    
+    init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
+        self.id = documentId
+        self.reference = reference
+        self.name = values["name"] as? String
+    }
+}

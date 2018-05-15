@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ItensViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itemsTableView: UITableView!
     
     var category = Category()
-    var itens: [Item] = []
-    let cellIdentifier = "ItensCellIdentifier"
+    var items: [Item] = []
+    let cellIdentifier = "ItemsCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getItens()
+        self.getItems()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,13 +26,13 @@ class ItensViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    func getItens() {
+    func getItems() {
         ItemService().getItens(categoryReference: self.category.reference!) { (documents, error) in
             if let error = error {
                 print(error)
             } else {
-                self.itens = documents!
-                self.itensTableView.reloadData()
+                self.items = documents!
+                self.itemsTableView.reloadData()
             }
         }
     }
@@ -44,26 +44,30 @@ class ItensViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itens.count
+        return self.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
-        cell.textLabel?.text = itens[indexPath.row].name
+        cell.textLabel?.text = items[indexPath.row].name
         
         return cell
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ItemsToItem", sender: indexPath)
     }
-    */
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ItemViewController {
+            let itemVC = segue.destination as? ItemViewController
+            let i = sender as? IndexPath
+            itemVC?.item = self.items[(i?.row)!]
+        }
+    }
 
 }
