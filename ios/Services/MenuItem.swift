@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Item {
+class MenuItem {
     var id: String?
     var reference: DocumentReference?
     var description: String?

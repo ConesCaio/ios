@@ -1,28 +1,18 @@
 //
 //  ItemViewController.swift
-//  
+//  ios
 //
-//  Created by Caio Cones on 14/05/2018.
+//  Created by Caio Cones on 16/05/2018.
+//  Copyright © 2018 Easy Food Corporation. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
 class ItemViewController: UIViewController {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    var item = Item()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nameLabel.text = item.name
-        priceLabel.text = item.price
-        descriptionLabel.text = item.description
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -31,14 +21,7 @@ class ItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func order(_ sender: Any) {
-        
-        
-        
-        
-    }
-    
-    
+
     /*
     // MARK: - Navigation
 
