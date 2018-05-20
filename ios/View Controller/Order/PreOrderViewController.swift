@@ -10,15 +10,33 @@ import UIKit
 import Firebase
 
 
-class PreOrderView: UIView, UITableViewDelegate, UITableViewDataSource {
+class PreOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var order = Order()
     
-    init() {
-        
-        
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var cartBarItem: UITabBarItem!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.emptyView = UIView()
+        self.teste()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if order.orderItem.count > 0 {
+            self.emptyView.isHidden = true
+        }
+    }
+    
+    
+    
+    func teste() {
+        if order.orderItem.count > 0 {
+            
+            self.cartBarItem.badgeValue = String(order.orderItem.count)
+        }
+    }
     
     // MARK: Data Source
     

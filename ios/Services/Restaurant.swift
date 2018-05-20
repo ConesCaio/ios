@@ -17,9 +17,7 @@ class Restaurant {
     var name: String?
     var owner: String?
     var phone: String?
-    
     var menu = Menu()
-    
     
     init() {
     }

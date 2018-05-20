@@ -27,6 +27,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         self.login()
     }
     
+    //Após realizar configurações corretas sobre segurança, tirar isso!
     func login() {
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -48,7 +49,6 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     // MARK: Data Source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -70,13 +70,12 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "RestaurantsToCategories", sender: indexPath)
     }
     
-    // MARK: - Navigation
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is CategoriesViewController {
             let categorysVC = segue.destination as? CategoriesViewController
-            let i = sender as? IndexPath
-            categorysVC?.restaurant = self.restaurants[(i?.row)!]
+            categorysVC?.restaurant = self.restaurants[(sender as! IndexPath).row]
         }
     }
  

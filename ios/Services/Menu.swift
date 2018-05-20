@@ -14,7 +14,8 @@ class Menu {
     var reference: DocumentReference?
     var name: String?
     var status: Bool?
-    var categorys: [Category]? = []
+    var categories: [Category] = []
+    var selectedCategoryIndex: Int?
     
     init() {
     }

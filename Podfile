@@ -12,5 +12,6 @@ target 'ios' do
   # Database
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
+    pod 'Firebase/Functions'
 
 end

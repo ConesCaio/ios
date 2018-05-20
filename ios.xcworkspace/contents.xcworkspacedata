@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/caio/Easy Food/Aplicac&#x327;o&#x303;es/ios/ios/View Controller/Restaurant/ItemViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:ios.xcodeproj">
    </FileRef>
    <FileRef

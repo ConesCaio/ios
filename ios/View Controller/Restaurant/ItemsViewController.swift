@@ -12,8 +12,9 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var itemsTableView: UITableView!
     
-    var category = Category()
-    var items: [Item] = []
+    var restaurant = Restaurant()
+
+    var menuItems: [MenuItem] = []
     let cellIdentifier = "ItemsCellIdentifier"
     
     override func viewDidLoad() {
@@ -27,32 +28,32 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getItems() {
-        ItemService().getItens(categoryReference: self.category.reference!) { (documents, error) in
+        let index = self.restaurant.menu.selectedCategoryIndex
+        let category = self.restaurant.menu.categories[index!]
+        MenuItemService().getItens(categoryReference: category.reference!) { (menuItems, error) in
             if let error = error {
                 print(error)
             } else {
-                self.items = documents!
+                self.menuItems = menuItems!
+                self.restaurant.menu.categories[index!].menuItems = menuItems!
                 self.itemsTableView.reloadData()
             }
         }
     }
     
-    // MARK: - Data Source
     
+    // MARK: - Data Source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.menuItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
-        // Configure Cell
-        cell.textLabel?.text = items[indexPath.row].name
-        
+        cell.textLabel?.text = menuItems[indexPath.row].name
         return cell
     }
 
@@ -60,13 +61,15 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegue(withIdentifier: "ItemsToItem", sender: indexPath)
     }
     
-    // MARK: - Navigation
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ItemViewController {
+            let categoryIndex = self.restaurant.menu.selectedCategoryIndex
+            self.restaurant.menu.categories[categoryIndex!].selectedMenuItemIndex = (sender as! IndexPath).row
             let itemVC = segue.destination as? ItemViewController
-            let i = sender as? IndexPath
-            itemVC?.item = self.items[(i?.row)!]
+            itemVC?.restaurant = self.restaurant
+            itemVC?.menuItem = self.menuItems[(sender as! IndexPath).row]
         }
     }
 

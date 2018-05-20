@@ -13,7 +13,8 @@ class Category {
     var id: String?
     var reference: DocumentReference?
     var name: String?
-    var itens: [Item]? = []
+    var menuItems: [MenuItem] = []
+    var selectedMenuItemIndex: Int?
     
     init() {
     }

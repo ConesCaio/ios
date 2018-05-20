@@ -14,7 +14,7 @@ class MenuItem {
     var reference: DocumentReference?
     var description: String?
     var name: String?
-    var price: String?
+    var price: Double?
     
     init() {
     }
@@ -24,8 +24,9 @@ class MenuItem {
         self.reference = reference
         self.description = values["description"] as? String
         self.name = values["name"] as? String
-        self.price = values["price"] as? String
+        self.price = values["price"] as? Double
     }
 }
+
 
 
