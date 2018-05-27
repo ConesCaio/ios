@@ -24,6 +24,9 @@ class LoginViewController: UIViewController {
                     print(error.localizedDescription)
                     // GUI: mostrar pop-up de erro de acordo com ele
                 } else {
+                    UserService().currentUser(completion: { (user, error) in
+                        //set UserDefaults
+                    })
                     self.dismiss(animated: true, completion: nil)
                 }
             }

@@ -14,16 +14,14 @@ class Order {
     var reference: DocumentReference?
     var restaurantRef: DocumentReference?
     var userRef: DocumentReference?
-    var delivered: Bool?
+    var delivered: Bool? = false
     var token: String?
     var orderItem: [OrderItem] = []
     
     init() {
     }
     
-    init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
-        self.id = documentId
-        self.reference = reference
+    init(withValues values: [String :Any]) {
         self.restaurantRef = values["restaurantRef"] as? DocumentReference
         self.userRef = values["userRef"] as? DocumentReference
         self.delivered = false

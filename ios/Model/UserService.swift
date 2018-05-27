@@ -71,19 +71,21 @@ class UserService {
     
     func currentUser(completion: @escaping (User?, Error?) -> ()){
         let db = Firestore.firestore()
-        let email = (Auth.auth().currentUser?.email)!
+        let email = (Auth.auth().currentUser?.email) ?? ""
         
         let userRef = db.collection("users").document(email)
         userRef.getDocument { (document, error) in
             if let error = error {
                 completion(nil, error)
             } else {
-                let name = (document!.data()!["name"] as? String)!
-                let cpf = (document!.data()!["cpf"] as? String)!
-                let phone = (document!.data()!["phone"] as? String)!
-                let uid = (document!.data()!["uid"] as? String)!
-                let profile = (document!.data()!["profile"] as? String)!
-                let user = User(uid: uid, name: name, email: email, cpf: cpf, phone: phone, profile: profile)
+                let user = User(withValues: (document?.data())!, id: (document?.documentID)!, and: (document?.reference)!)
+                //Set as User Defaults
+                UserDefaults.standard.set(user.name, forKey: "name")
+                UserDefaults.standard.set(user.email, forKey: "email")
+                UserDefaults.standard.set(user.reference?.path, forKey: "referencePath")
+                UserDefaults.standard.set(user.profile, forKey: "profile")
+                UserDefaults.standard.synchronize()
+                
                 completion(user, nil)
             }
         }
@@ -98,6 +100,10 @@ class UserService {
             completion(signOutError)
             return
         }
+        UserDefaults.standard.removeObject(forKey: "name")
+        UserDefaults.standard.removeObject(forKey: "email")
+        UserDefaults.standard.removeObject(forKey: "reference")
+        UserDefaults.standard.removeObject(forKey: "profile")
         completion(nil)
     }
     

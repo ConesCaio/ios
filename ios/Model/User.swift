@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Firebase
 
 class User {
     
     var uid: String?
+    var reference: DocumentReference?
     var name: String?
     var phone: String?
     var email: String?
@@ -38,5 +40,18 @@ class User {
         self.password = password
         self.profile = profile
     }
+    
+    init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
+        self.uid = documentId
+        self.reference = reference
+        
+        self.name = values["name"] as? String
+        self.email = values["email"] as? String
+        self.cpf = values["cpf"] as? String
+        self.phone = values["phone"] as? String
+        self.password = values["password"] as? String
+        self.profile = values["profile"] as? String
+    }
+    
     
 }

@@ -17,6 +17,7 @@ class Restaurant {
     var name: String?
     var owner: String?
     var phone: String?
+    var token: String?
     var menu = Menu()
     
     init() {
@@ -30,6 +31,7 @@ class Restaurant {
         self.name = values["name"] as? String
         self.owner = values["owner"] as? String
         self.phone = values["phone"] as? String
+        self.token = values["token"] as? String
         self.menu = Menu()
     }
 }

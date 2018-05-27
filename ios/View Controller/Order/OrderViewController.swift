@@ -9,35 +9,29 @@
 import UIKit
 import Firebase
 
-class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrderViewController: UIViewController {
     
-    var order = Order()
+    @IBOutlet weak var PreOrderView: UIView!
+    @IBOutlet weak var AllOrdersView: UIView!
     
     override func viewDidLoad() {
-        
+        if Singleton.sharedInstance.isEmpty() {
+            self.PreOrderView.isHidden = true
+            self.AllOrdersView.isHidden = false
+        } else {
+            self.PreOrderView.isHidden = false
+            self.AllOrdersView.isHidden = true
+        }
     }
     
-    // MARK: Data Source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "google", for: indexPath)
-        
-        // Configure Cell
-        //cell.textLabel?.text = restaurants[indexPath.row].name
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.performSegue(withIdentifier: "RestaurantsToCategories", sender: indexPath)
+    override func viewWillAppear(_ animated: Bool) {
+        if Singleton.sharedInstance.isEmpty() {
+            self.PreOrderView.isHidden = true
+            self.AllOrdersView.isHidden = false
+        } else {
+            self.PreOrderView.isHidden = false
+            self.AllOrdersView.isHidden = true
+        }
     }
     
 }

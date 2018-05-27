@@ -14,6 +14,8 @@ class RestaurantService {
     func getRestaurants(completion: @escaping ([Restaurant]?, Error?) -> ()) {
         var restaurants: [Restaurant] = []
         let db = Firestore.firestore()
+        db.settings.isPersistenceEnabled = true
+        
         let userRef = db.collection("restaurants")
         userRef.getDocuments { (documents, error) in
             if let error = error {

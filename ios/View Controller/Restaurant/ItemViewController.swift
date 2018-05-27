@@ -21,8 +21,11 @@ class ItemViewController: UIViewController {
     var restaurant = Restaurant()
     var menuItem = MenuItem()
     
+    lazy var functions = Functions.functions()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         nameLabel.text = menuItem.name
         priceLabel.text = menuItem.price?.description
         descriptionLabel.text = menuItem.description
@@ -35,24 +38,52 @@ class ItemViewController: UIViewController {
     
     @IBAction func order(_ sender: Any) {
         
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "loginVC")
-            self.present(controller, animated: true, completion: nil)
+        if Singleton.sharedInstance.isEmpty() {
+            let order = Order()
+            let refPath = UserDefaults.standard.object(forKey: "referencePath") as? String
+            let db = Firestore.firestore()
+            order.userRef = db.document(refPath!)
+            order.restaurantRef = self.restaurant.reference
+            
+            let orderItem = OrderItem()
+            orderItem.menuItem = self.menuItem
+            orderItem.quantity = self.quantityStepper.value
+            orderItem.price = (self.quantityStepper.value * self.menuItem.price!)
+            
+            order.orderItem.append(orderItem)
+            
+            Singleton.sharedInstance.createOrder(order: order)
+            
+            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
+            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
+            vc.tabBarItem.badgeValue = "1"
+           // vc.order = Singleton.sharedInstance.order
+            mainTabBarController.selectedViewController = vc
+            
+            self.present(mainTabBarController, animated: true, completion: nil)
+            
         } else {
             let orderItem = OrderItem()
             orderItem.menuItem = self.menuItem
-            orderItem.quantity = quantityStepper.value
-            orderItem.price = (quantityStepper.value * menuItem.price!)
+            orderItem.quantity = self.quantityStepper.value
+            orderItem.price = (self.quantityStepper.value * self.menuItem.price!)
+            
+            Singleton.sharedInstance.addItem(item: orderItem)
+            
+            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
+            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
+            vc.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
+            //vc.order = Singleton.sharedInstance.order
+            mainTabBarController.selectedViewController = vc
+            
+            self.present(mainTabBarController, animated: true, completion: nil)
         }
-        
     }
     
     func getRestaurants(completion: @escaping ([Restaurant]?, Error?) -> ()) {
         var restaurants: [Restaurant] = []
         let db = Firestore.firestore()
         let userRef = db.collection("restaurants")
-        
         userRef.getDocuments { (documents, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -68,14 +99,19 @@ class ItemViewController: UIViewController {
     }
     
     // MARK: - Navigation
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is PreOrderViewController {
-//            let preOrderVC = segue.destination as? PreOrderViewController
-//            preOrderVC?.order.orderItem.append(sender as! OrderItem)
-//
-//        }
-//    }
-//
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is OrderViewController {
+            let orderVC = segue.destination as? OrderViewController
+            let order = sender as! Order
+//            if orderVC?.order == nil {
+//               orderVC?.order = order
+//            } else {
+//                orderVC?.order.orderItem.append(order.orderItem.first!)
+//            }
+
+        }
+    }
+
     
 }
