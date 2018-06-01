@@ -13,5 +13,7 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.selectedIndex = 0
     }
 }

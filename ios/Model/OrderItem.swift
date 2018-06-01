@@ -13,6 +13,7 @@ class OrderItem {
     var id: String?
     var reference: DocumentReference?
     var menuItem: MenuItem?
+    var menuItemRef: DocumentReference?
     var quantity: Double?
     var price: Double?
     
@@ -22,7 +23,7 @@ class OrderItem {
     init(withValues values: [String :Any], id documentId: String, and reference: DocumentReference) {
         self.id = documentId
         self.reference = reference
-        self.menuItem = values["menuItem"] as? MenuItem
+        self.menuItemRef = values["menuItem"] as? DocumentReference
         self.quantity = values["quantity"] as? Double
         self.price = values["price"] as? Double
     }

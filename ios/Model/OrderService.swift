@@ -11,6 +11,84 @@ import Firebase
 
 class OrderService {
     
+    func getOrders(withUserRefencePath userRefPath: String?, completion: @escaping ([Order]?, Error?) -> ()) {
+        let db = Firestore.firestore()
+        if userRefPath != nil {
+            let userRef = Firestore.firestore().document(userRefPath!)
+            let orderRef = db.collection("order").whereField("userRef", isEqualTo: userRef)
+            
+            orderRef.getDocuments { (documents, error) in
+                if let error = error { completion(nil, error) }
+                
+                var orders: [Order] = []
+                for doc in (documents?.documents)! {
+                    let order = Order(values: doc.data(), reference: doc.reference, id: doc.documentID)
+                    orders.append(order)
+                }
+                
+                completion(orders, nil)
+            }
+        } else {
+            let err = NSError(domain:"", code:400, userInfo:nil)
+            completion(nil, err)
+        }
+    }
+
+    
+    // MARK: DEPRECATED
+    private func mergeOrderItem(orders: [Order], completion: @escaping ([Order]?, Error?) -> ()) {
+        
+        for order in orders {
+            self.getOrderItem(reference: order.reference!, completion: { (orderItem, error) in
+                if let error = error {
+                    completion(nil, error)
+                } else {
+                    order.orderItem = orderItem!
+                }
+            })
+        }
+        
+//        var newOrders: [Order] = []
+//        for order in orders {
+//            self.getOrderItem(reference: order.reference!, completion: { (orderItem, error) in
+//                if let error = error {
+//                    completion(nil, error)
+//                } else {
+//                    order.orderItem = orderItem!
+//                    newOrders.append(order)
+//                }
+//            })
+//        }
+    }
+    
+    
+    
+    private func getOrderItem (reference: DocumentReference, completion: @escaping ([OrderItem]?, Error?) -> ()) {
+        let orderItemRef = reference.collection("orderItem")
+        orderItemRef.getDocuments { (documents, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                var orderItem: [OrderItem] = []
+                for document in (documents?.documents)! {
+                    let item = OrderItem(withValues: document.data(), id: document.documentID, and: document.reference)
+                    MenuItemService().getMenuItem(reference: item.menuItemRef!, completion: { (menuItem, error) in
+                        if let error = error {
+                            completion(nil, error)
+                        } else {
+                            item.menuItem = menuItem
+                        }
+                    })
+                    orderItem.append(item)
+                }
+                completion(orderItem, nil)
+            }
+        }
+    }
+    
+    
+    
+    // MARK: Create Order
     func createOrder(withValues order: Order, completion: @escaping (Order?, Error?) -> ()) {
         
         self.structOrder(order: order) { (newOrder, error) in

@@ -26,4 +26,15 @@ class MenuItemService {
         })
     }
     
+    func getMenuItem (reference: DocumentReference, completion: @escaping (MenuItem?, Error?) -> ()) {
+        reference.getDocument { (document, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                let menuItem = MenuItem(withValues: (document?.data())!, id: (document?.documentID)!, and: (document?.reference)!)
+                completion(menuItem, nil)
+            }
+        }
+    }
+    
 }

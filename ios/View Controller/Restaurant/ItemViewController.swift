@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ItemViewController: UIViewController {
+class ItemViewController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -54,13 +54,15 @@ class ItemViewController: UIViewController {
             
             Singleton.sharedInstance.createOrder(order: order)
             
-            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
-            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
-            vc.tabBarItem.badgeValue = "1"
-           // vc.order = Singleton.sharedInstance.order
-            mainTabBarController.selectedViewController = vc
+            self.tabBarController?.selectedIndex = 1
             
-            self.present(mainTabBarController, animated: true, completion: nil)
+//            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
+//            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
+//            vc.tabBarItem.badgeValue = "1"
+//           // vc.order = Singleton.sharedInstance.order
+//            mainTabBarController.selectedViewController = vc
+//
+//            self.present(mainTabBarController, animated: true, completion: nil)
             
         } else {
             let orderItem = OrderItem()
@@ -70,13 +72,15 @@ class ItemViewController: UIViewController {
             
             Singleton.sharedInstance.addItem(item: orderItem)
             
-            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
-            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
-            vc.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
-            //vc.order = Singleton.sharedInstance.order
-            mainTabBarController.selectedViewController = vc
+            self.tabBarController?.selectedIndex = 1
             
-            self.present(mainTabBarController, animated: true, completion: nil)
+//            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
+//            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
+//            vc.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
+//            //vc.order = Singleton.sharedInstance.order
+//            mainTabBarController.selectedViewController = vc
+//
+//            self.present(mainTabBarController, animated: true, completion: nil)
         }
     }
     

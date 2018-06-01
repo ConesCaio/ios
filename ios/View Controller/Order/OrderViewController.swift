@@ -9,12 +9,22 @@
 import UIKit
 import Firebase
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var PreOrderView: UIView!
     @IBOutlet weak var AllOrdersView: UIView!
     
     override func viewDidLoad() {
+        self.setCustonView()
+        self.setTabBarBadge()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setCustonView()
+        self.setTabBarBadge()
+    }
+    
+    func setCustonView() {
         if Singleton.sharedInstance.isEmpty() {
             self.PreOrderView.isHidden = true
             self.AllOrdersView.isHidden = false
@@ -24,13 +34,11 @@ class OrderViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func setTabBarBadge() {
         if Singleton.sharedInstance.isEmpty() {
-            self.PreOrderView.isHidden = true
-            self.AllOrdersView.isHidden = false
+            self.tabBarItem.badgeValue = nil
         } else {
-            self.PreOrderView.isHidden = false
-            self.AllOrdersView.isHidden = true
+            self.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
         }
     }
     
