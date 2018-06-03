@@ -42,8 +42,22 @@ class Order {
         self.restaurantName = values["restaurantName"] as? String
         self.restaurantRef = values["restaurantRef"] as? DocumentReference
         self.token = values["token"] as? String
-        self.userName = values["usarName"] as? String
+        self.userName = values["userName"] as? String
         self.userRef = values["userRef"] as? DocumentReference
+    }
+    
+    func getValues() -> [String :Any] {
+        let docData: [String: Any] = [
+            "createdAt": self.createdAt!,
+            "delivered": self.delivered!,
+            "restaurantName": self.restaurantName!,
+            "restaurantRef": self.restaurantRef!,
+            "token": self.token!,
+            "userName": self.userName!,
+            "userRef": self.userRef!,
+            ]
+        
+        return docData
     }
 }
 

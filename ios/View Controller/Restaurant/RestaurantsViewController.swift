@@ -19,39 +19,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getRestaurants()
-        teste()
     }
-    
-    func teste() {
-        
-        let db = Firestore.firestore()
-        let ref = db.collection("users").document("client@easyfood.com.br")
-        let ref2 = db.collection("users").document("client2@easyfood.com.br")
-        
-//        ref.getDocuments { (doc, err) in
-//            for docs in (doc?.documents)!
-//            {
-//                ref2.addDocument(data:(docs.data()))
-//
-//            }
-//
-//        }
-        
-        ref.getDocument { (doc, err) in
-            let data = doc?.data()
-            ref2.setData(data!)
-        }
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

@@ -11,7 +11,7 @@ import UIKit
 class Singleton {
     static let sharedInstance = Singleton()
     
-    var order = Order()
+    private var order = Order()
     
     private init() { }
     
@@ -45,6 +45,37 @@ class Singleton {
         return false
     }
     
+    func getTotal() -> Double {
+        var total: Double = 0
+        for iten in self.order.orderItem {
+            total = total + iten.price!
+        }
+        return total
+    }
+    
+    func getOrder() -> Order {
+        return self.order
+    }
+    
+    func getValues() -> [String :Any] {
+        let docData: [String: Any] = [
+            "createdAt": self.order.createdAt!,
+            "delivered": self.order.delivered!,
+            "restaurantName": self.order.restaurantName!,
+            "restaurantRef": self.order.restaurantRef!,
+            "token": self.order.token!,
+            "userName": self.order.userName!,
+            "userRef": self.order.userRef!,
+            ]
+        
+        return docData
+    }
+    
+    func addToken(token: String) {
+        self.order.token = token
+        self.order.createdAt = Date()
+        self.order.delivered = false
+    }
     
 }
 

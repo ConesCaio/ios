@@ -38,7 +38,8 @@ class OrderViewController: UIViewController, UITabBarControllerDelegate {
         if Singleton.sharedInstance.isEmpty() {
             self.tabBarItem.badgeValue = nil
         } else {
-            self.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
+            let auxOrder = Singleton.sharedInstance.getOrder()
+            self.tabBarItem.badgeValue = String(auxOrder.orderItem.count)
         }
     }
     

@@ -44,9 +44,12 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
             let db = Firestore.firestore()
             order.userRef = db.document(refPath!)
             order.restaurantRef = self.restaurant.reference
+            order.restaurantName = self.restaurant.name
+            order.userName = UserDefaults.standard.object(forKey: "name") as? String
             
             let orderItem = OrderItem()
             orderItem.menuItem = self.menuItem
+            orderItem.observation = self.observationField.text
             orderItem.quantity = self.quantityStepper.value
             orderItem.price = (self.quantityStepper.value * self.menuItem.price!)
             
@@ -56,31 +59,26 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
             
             self.tabBarController?.selectedIndex = 1
             
-//            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
-//            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
-//            vc.tabBarItem.badgeValue = "1"
-//           // vc.order = Singleton.sharedInstance.order
-//            mainTabBarController.selectedViewController = vc
-//
-//            self.present(mainTabBarController, animated: true, completion: nil)
-            
         } else {
-            let orderItem = OrderItem()
-            orderItem.menuItem = self.menuItem
-            orderItem.quantity = self.quantityStepper.value
-            orderItem.price = (self.quantityStepper.value * self.menuItem.price!)
             
-            Singleton.sharedInstance.addItem(item: orderItem)
-            
-            self.tabBarController?.selectedIndex = 1
-            
-//            let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarController") as! MainTabBarController
-//            let vc = mainTabBarController.viewControllers?[1] as! OrderViewController
-//            vc.tabBarItem.badgeValue = String(Singleton.sharedInstance.order.orderItem.count)
-//            //vc.order = Singleton.sharedInstance.order
-//            mainTabBarController.selectedViewController = vc
-//
-//            self.present(mainTabBarController, animated: true, completion: nil)
+            let auxOrder = Singleton.sharedInstance.getOrder()
+            let singRest = auxOrder.restaurantRef
+            let itemRest = self.restaurant.reference
+            if singRest == itemRest {
+                let orderItem = OrderItem()
+                orderItem.menuItem = self.menuItem
+                orderItem.observation = self.observationField.text
+                orderItem.quantity = self.quantityStepper.value
+                orderItem.price = (self.quantityStepper.value * self.menuItem.price!)
+                
+                Singleton.sharedInstance.addItem(item: orderItem)
+                
+                self.tabBarController?.selectedIndex = 1
+                
+            } else {
+                // MENSAGEM DE ERRO!
+                // Só pode inserir um restaurante por vez; Não é possível misturar pedidos.
+            }
         }
     }
     
@@ -102,20 +100,5 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
         }
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is OrderViewController {
-            let orderVC = segue.destination as? OrderViewController
-            let order = sender as! Order
-//            if orderVC?.order == nil {
-//               orderVC?.order = order
-//            } else {
-//                orderVC?.order.orderItem.append(order.orderItem.first!)
-//            }
-
-        }
-    }
-
     
 }

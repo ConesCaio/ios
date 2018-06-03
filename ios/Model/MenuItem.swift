@@ -12,9 +12,10 @@ import Firebase
 class MenuItem {
     var id: String?
     var reference: DocumentReference?
-    var description: String?
+    
     var name: String?
     var price: Double?
+    var description: String?
     
     init() {
     }

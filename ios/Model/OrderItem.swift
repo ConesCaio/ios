@@ -12,8 +12,10 @@ import Firebase
 class OrderItem {
     var id: String?
     var reference: DocumentReference?
-    var menuItem: MenuItem?
+    
     var menuItemRef: DocumentReference?
+    var menuItem: MenuItem?
+    var observation: String?
     var quantity: Double?
     var price: Double?
     
@@ -24,6 +26,7 @@ class OrderItem {
         self.id = documentId
         self.reference = reference
         self.menuItemRef = values["menuItem"] as? DocumentReference
+        self.observation = values["observation"] as? String
         self.quantity = values["quantity"] as? Double
         self.price = values["price"] as? Double
     }

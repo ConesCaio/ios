@@ -33,7 +33,101 @@ class OrderService {
             completion(nil, err)
         }
     }
-
+    
+    // MARK: SEND ORDER
+    
+    func sendOrder(order: Order, completion: @escaping (Error?) -> ()) {
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("order")
+        
+        self.updateOrderItem(ref: ref) { (error) in
+            if let error = error { completion(error) }
+        }
+        
+        self.getToken(withRestaurantReference: order.restaurantRef!) { (orderToken, error) in
+            if let error = error { completion(error) }
+            
+            Singleton.sharedInstance.addToken(token: orderToken!)
+            
+            ref.addDocument(data: Singleton.sharedInstance.getValues())
+            
+        }
+        
+    }
+    
+    private func updateOrderItem(ref: CollectionReference, completion: @escaping (Error?) -> ()) {
+        
+        ref.addSnapshotListener { (docSnapshot, error) in
+            if let error = error { completion(error) }
+            //add order item
+            
+            
+            
+            //clear singleton
+        }
+        
+    }
+    
+    private func getToken (withRestaurantReference ref: DocumentReference, completion: @escaping (String?, Error?) -> ()) {
+        ref.getDocument { (document, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                //pegou o token
+                self.updateToken(withRestaurantID: ref.documentID, completion: { (error2) in
+                    if let error2 = error2 {
+                        completion(nil, error2)
+                    } else {
+                        //atualizou o token
+                        let token = document?.data()!["token"].debugDescription
+                        completion(token, nil)
+                    }
+                })
+            }
+        }
+    }
+    
+    private func updateToken (withRestaurantID restID: String, completion: @escaping (Error?) -> ()) {
+        let functions = Functions.functions()
+        functions.httpsCallable("updateToken").call(["token": restID]) { (result, error) in
+            if let error = error{
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: DEPRECATED
     private func mergeOrderItem(orders: [Order], completion: @escaping ([Order]?, Error?) -> ()) {
@@ -136,35 +230,9 @@ class OrderService {
         }
     }
     
-    private func getToken (withRestaurantReference ref: DocumentReference, completion: @escaping (String?, Error?) -> ()) {
-        ref.getDocument { (document, error) in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                //pegou o token
-                self.updateToken(withRestaurantID: ref.documentID, completion: { (error2) in
-                    if let error2 = error2 {
-                        completion(nil, error2)
-                    } else {
-                        //atualizou o token
-                        let token = document?.data()!["token"].debugDescription
-                        completion(token, nil)
-                    }
-                })
-            }
-        }
-    }
     
-    private func updateToken (withRestaurantID restID: String, completion: @escaping (Error?) -> ()) {
-        let functions = Functions.functions()
-        functions.httpsCallable("updateToken").call(["token": restID]) { (result, error) in
-            if let error = error{
-                completion(error)
-            } else {
-                completion(nil)
-            }
-        }
-    }
+    
+    
     
     
 }
