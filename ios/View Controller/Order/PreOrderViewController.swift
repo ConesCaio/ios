@@ -41,12 +41,10 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func sendOrder(_ sender: Any) {
         
-//        Singleton.sharedInstance.order.createdAt = Date()
-//        Singleton.sharedInstance.order.delivered = false
-        
         OrderService().sendOrder(order: Singleton.sharedInstance.getOrder()) { (error) in
             if let error = error {
-                //MOSTRAR MENSAGEM DE ERRO
+                // error message
+                self.showAlert(title: "ERRO", message: "Não foi possível enviar seu pedido, tente novamente!")
                 print(error.localizedDescription)
             } else {
                 self.dismissPreOrderView()
@@ -73,13 +71,11 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PreOrderCellIdentifier", for: indexPath) as! PreOrderCell
         
+        if self.order.orderItem.count <= 0 { return cell }
+        
         let orderItem = self.order.orderItem[indexPath.row]
         cell.itemLabel.text = orderItem.menuItem?.name
         cell.observationsLabel.text = orderItem.observation
-        
-        
-        // Configure Cell
-        //cell.textLabel?.text = self.order.orderItem[indexPath.row].menuItem?.name
         
         return cell
     }
@@ -92,4 +88,11 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
         return 100
     }
     
+    // MARK: ALERT
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }

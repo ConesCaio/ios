@@ -77,5 +77,8 @@ class Singleton {
         self.order.delivered = false
     }
     
+    func getOrderItens() -> [OrderItem] {
+        return self.order.orderItem
+    }
 }
 

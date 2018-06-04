@@ -62,7 +62,8 @@ class profileViewController: UIViewController {
                 print(error.localizedDescription)
                 // Gui: Mostrar mensagem de erro
             } else {
-                // Gui: Mostrar mensagem de sucesso "A recuperação de senha foi enviada para seu email"
+                // error message
+                self.showAlert(title: "Sucesso", message: "Enviamos um link para o seu email com as instruções para alteração da senha.")
             }
         }
     }
@@ -86,6 +87,14 @@ class profileViewController: UIViewController {
                 self.cellphoneField.text = self.user.phone
             }
         }
+    }
+    
+    // MARK: ALERT
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }

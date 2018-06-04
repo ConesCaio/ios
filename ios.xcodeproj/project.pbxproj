@@ -37,6 +37,7 @@
 		25D5BA2E209C924900A07461 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5BA2D209C924900A07461 /* RestaurantsViewController.swift */; };
 		25D5BA30209D175300A07461 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5BA2F209D175300A07461 /* ProfileViewController.swift */; };
 		25D8616C20BB5ABC00B4EA1E /* AllOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8616B20BB5ABC00B4EA1E /* AllOrdersViewController.swift */; };
+		25E08D7020C570A800742D49 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E08D6F20C570A800742D49 /* Alerts.swift */; };
 		9E6DA0D3326C8E70790A11BE /* Pods_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A236A096578997A3E574DFE /* Pods_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,10 +70,11 @@
 		25A296BB2097D27300C76587 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		25A296C72097EB7800C76587 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		25A7C35A20B77BB500D660F7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		25A7C35C20B7AE0E00D660F7 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Singleton.swift; path = ios/Singleton.swift; sourceTree = SOURCE_ROOT; };
+		25A7C35C20B7AE0E00D660F7 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Singleton.swift; path = ios/Complements/Singleton.swift; sourceTree = SOURCE_ROOT; };
 		25D5BA2D209C924900A07461 /* RestaurantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsViewController.swift; sourceTree = "<group>"; };
 		25D5BA2F209D175300A07461 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		25D8616B20BB5ABC00B4EA1E /* AllOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllOrdersViewController.swift; sourceTree = "<group>"; };
+		25E08D6F20C570A800742D49 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		6A236A096578997A3E574DFE /* Pods_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF08F668010A24D17C5CC637 /* Pods-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.release.xcconfig"; sourceTree = "<group>"; };
 		F353283EE954EC5991A49E0A /* Pods-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,13 +113,12 @@
 		25129E6D2090EA4F00F7C092 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				25E08D6E20C5702B00742D49 /* Complements */,
 				25388ABF20A1F6D6005BA111 /* View Controller */,
 				255E5FD3209F457300AF0C62 /* Model */,
 				25129E752090EA5000F7C092 /* Assets.xcassets */,
 				25129E722090EA4F00F7C092 /* Main.storyboard */,
-				25A7C35C20B7AE0E00D660F7 /* Singleton.swift */,
 				25129E6E2090EA4F00F7C092 /* AppDelegate.swift */,
-				25A7C35A20B77BB500D660F7 /* MainTabBarController.swift */,
 				25129E772090EA5000F7C092 /* LaunchScreen.storyboard */,
 				25129E7A2090EA5000F7C092 /* Info.plist */,
 				25129E802090EA6F00F7C092 /* GoogleService-Info.plist */,
@@ -169,6 +170,7 @@
 		258601C020A8E46F00A650FD /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				25A7C35A20B77BB500D660F7 /* MainTabBarController.swift */,
 				256210B220B075260052B442 /* OrderViewController.swift */,
 				25D8616B20BB5ABC00B4EA1E /* AllOrdersViewController.swift */,
 				256210B420B086D90052B442 /* PreOrderViewController.swift */,
@@ -184,6 +186,15 @@
 				25D5BA2F209D175300A07461 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		25E08D6E20C5702B00742D49 /* Complements */ = {
+			isa = PBXGroup;
+			children = (
+				25A7C35C20B7AE0E00D660F7 /* Singleton.swift */,
+				25E08D6F20C570A800742D49 /* Alerts.swift */,
+			);
+			path = Complements;
 			sourceTree = "<group>";
 		};
 		32B32D37F049492BE7D26C7F /* Frameworks */ = {
@@ -350,6 +361,7 @@
 				25388AC520A2807F005BA111 /* Menu.swift in Sources */,
 				25A296C82097EB7800C76587 /* CreateUserViewController.swift in Sources */,
 				258601BA20A8E3A000A650FD /* Category.swift in Sources */,
+				25E08D7020C570A800742D49 /* Alerts.swift in Sources */,
 				25388AC720A29C6E005BA111 /* RestaurantService.swift in Sources */,
 				258601B820A7DFC200A650FD /* ItemsViewController.swift in Sources */,
 				255E5FD5209F458600AF0C62 /* User.swift in Sources */,

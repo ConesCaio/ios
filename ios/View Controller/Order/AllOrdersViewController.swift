@@ -38,9 +38,12 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
         let userRefPath = UserDefaults.standard.string(forKey: "referencePath")
         OrderService().getOrders(withUserRefencePath: userRefPath) { (orderArr, error) in
             if let error = error {
+                // error message
+                self.showAlert(title: "ERRO", message: "Não foi possível baixar os pedidos anteriores, tente novamente!")
                 print(error.localizedDescription)
             } else {
                 self.orders = orderArr!
+                self.orders.sort(by: { $0.createdAt! > $1.createdAt! })
                 self.allOrdersTableView.reloadData()
             }
         }
@@ -86,6 +89,14 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
+    }
+    
+    // MARK: ALERT
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }

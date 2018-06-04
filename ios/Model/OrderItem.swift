@@ -31,4 +31,15 @@ class OrderItem {
         self.price = values["price"] as? Double
     }
     
+    func data() -> [String :Any] {
+        let docData: [String: Any] = [
+            "menuItemRef": self.menuItem?.reference!,
+            "observation": self.observation!,
+            "quantity": self.quantity!,
+            "price": self.price!,
+            ]
+        
+        return docData
+    }
+    
 }

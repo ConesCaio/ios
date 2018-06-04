@@ -76,8 +76,8 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
                 self.tabBarController?.selectedIndex = 1
                 
             } else {
-                // MENSAGEM DE ERRO!
-                // Só pode inserir um restaurante por vez; Não é possível misturar pedidos.
+                // error message
+                self.showAlert(title: "ERRO", message: "Você só pode adicionar itens ao pedido que sejam do mesmo restaurante.")
             }
         }
     }
@@ -100,5 +100,12 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
         }
     }
     
+    // MARK: ALERT
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
 }
