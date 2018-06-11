@@ -68,8 +68,10 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if self.orders[indexPath.row].delivered! {
             cell.deliveredLabel.text = "Entregue"
+            cell.deliveredLabel.textColor = UIColor.blue
         } else {
             cell.deliveredLabel.text = "Aguardando"
+            cell.deliveredLabel.textColor = UIColor.red
         }
         
         let dateFormatter = DateFormatter()
@@ -88,7 +90,7 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 115
     }
     
     // MARK: ALERT
