@@ -21,6 +21,12 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.getItems()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.itemsTableView.backgroundView = imageView
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,6 +60,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = menuItems[indexPath.row].name
+        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
 

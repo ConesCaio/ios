@@ -22,6 +22,12 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         self.getMenu()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.categorysTableView.backgroundView = imageView
+    }
+    
     func getMenu() {
         MenuService().getActiveMenu(restaurantReference: restaurant.reference!) { (menu, error) in
             if let error = error {
@@ -58,6 +64,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = self.categories[indexPath.row].name
+        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     

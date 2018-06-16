@@ -25,12 +25,22 @@ class ItemViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let aString = menuItem.price?.description
+        let newString = aString?.replacingOccurrences(of: ".", with: ",")
+        priceLabel.text = newString
+        
         nameLabel.text = menuItem.name
-        priceLabel.text = menuItem.price?.description
         descriptionLabel.text = menuItem.description
         quantityLabel.text = Int(quantityStepper.value).description
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.view.backgroundColor = UIColor.clear
+    }
+    
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         quantityLabel.text = Int(sender.value).description

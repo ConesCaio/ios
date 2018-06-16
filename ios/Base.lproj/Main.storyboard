@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="7h0-eS-fsj">
+                                <rect key="frame" x="1" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vXA-Uk-z69">
                                 <rect key="frame" x="16" y="351" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,9 +169,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0lR-W1-OP4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurantes" id="7FL-CL-r9X">
-                        <barButtonItem key="backBarButtonItem" title="Voltar" id="8r8-fa-R5L"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="RESTAURANTES" id="7FL-CL-r9X"/>
                     <connections>
                         <outlet property="restaurantsTableView" destination="vlK-QE-hX4" id="RyW-Ua-lsp"/>
                     </connections>
@@ -176,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="2933.5999999999999" y="283.80809595202402"/>
         </scene>
-        <!--Categorias-->
+        <!--CATEGORIAS-->
         <scene sceneID="71G-A0-zRB">
             <objects>
-                <viewController storyboardIdentifier="CategoriesVC" title="Categorias" id="189-bi-0Gd" customClass="CategoriesViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesVC" title="CATEGORIAS" id="189-bi-0Gd" customClass="CategoriesViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fci-NG-l9j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,10 +225,10 @@
             </objects>
             <point key="canvasLocation" x="3850" y="284"/>
         </scene>
-        <!--Itens-->
+        <!--ITENS-->
         <scene sceneID="EuI-Sl-sSU">
             <objects>
-                <viewController title="Itens" id="VlJ-b7-aub" customClass="ItemsViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ITENS" id="VlJ-b7-aub" customClass="ItemsViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="faj-NL-KCZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,14 +272,18 @@
             </objects>
             <point key="canvasLocation" x="4761" y="284"/>
         </scene>
-        <!--Item-->
+        <!--ITEM-->
         <scene sceneID="NEC-XO-UVW">
             <objects>
-                <viewController title="Item" id="Zgi-nD-rfC" customClass="ItemViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ITEM" id="Zgi-nD-rfC" customClass="ItemViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jby-ZW-PMh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="99W-DZ-eUA">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU7-IP-otJ">
                                 <rect key="frame" x="16" y="101" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -390,9 +396,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bv5-eN-dKN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="vRQ-Si-DXN" kind="relationship" relationship="viewControllers" id="gXo-rd-dx8"/>
@@ -412,6 +418,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="6jD-ZX-L7W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKY-1t-qkY">
                                 <rect key="frame" x="16" y="370" width="343" height="30"/>
                                 <nil key="textColor"/>
@@ -424,7 +434,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CPF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2R-rk-ZGQ">
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CPF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2R-rk-ZGQ">
                                 <rect key="frame" x="16" y="317" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -525,6 +535,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="gdr-Td-lw2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdH-X6-DGO">
                                 <rect key="frame" x="16" y="397" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -616,6 +630,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XL2-sC-o2o">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -626,7 +645,7 @@
             </objects>
             <point key="canvasLocation" x="2073" y="284"/>
         </scene>
-        <!--Carrinho-->
+        <!--CARRINHO-->
         <scene sceneID="eQg-39-5hi">
             <objects>
                 <viewController id="urV-rv-oQd" customClass="PreOrderViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -635,7 +654,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7x5-ts-qar">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreOrderCellIdentifier" rowHeight="100" id="sG4-PT-6bj" customClass="PreOrderCell" customModule="ios" customModuleProvider="target">
@@ -698,13 +717,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome do Restaurante" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2d-fY-Xf8">
+                                <rect key="frame" x="16" y="76" width="343" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tk4-2X-0We" firstAttribute="leading" secondItem="Ckq-eb-Z9z" secondAttribute="leading" constant="202" id="0Hf-JN-6Di"/>
                             <constraint firstItem="GOA-dD-1Ay" firstAttribute="leading" secondItem="tk4-2X-0We" secondAttribute="trailing" constant="8" id="54x-BG-eZe"/>
                             <constraint firstItem="Ckq-eb-Z9z" firstAttribute="bottom" secondItem="tk4-2X-0We" secondAttribute="bottom" constant="15" id="Chn-Nu-w18"/>
-                            <constraint firstItem="7x5-ts-qar" firstAttribute="top" secondItem="scy-T3-XZt" secondAttribute="top" id="EcU-b0-kii"/>
+                            <constraint firstItem="7x5-ts-qar" firstAttribute="top" secondItem="scy-T3-XZt" secondAttribute="top" constant="112" id="EcU-b0-kii"/>
                             <constraint firstItem="tk4-2X-0We" firstAttribute="top" secondItem="7x5-ts-qar" secondAttribute="bottom" constant="8" id="EdW-R6-jJa"/>
                             <constraint firstItem="Ckq-eb-Z9z" firstAttribute="bottom" secondItem="GOA-dD-1Ay" secondAttribute="bottom" constant="15" id="GzQ-AY-lax"/>
                             <constraint firstItem="GOA-dD-1Ay" firstAttribute="top" secondItem="7x5-ts-qar" secondAttribute="bottom" constant="8" id="IBv-Rd-xIu"/>
@@ -716,13 +742,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ckq-eb-Z9z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Carrinho" id="vQX-FA-xg5">
-                        <barButtonItem key="leftBarButtonItem" title="CANCELAR" id="uIf-XJ-zql">
+                    <navigationItem key="navigationItem" title="CARRINHO" id="vQX-FA-xg5">
+                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="uIf-XJ-zql">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelOrder:" destination="urV-rv-oQd" id="6eu-zM-SQx"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="FINALIZAR" id="dHI-rb-kZj">
+                        <barButtonItem key="rightBarButtonItem" title="Finalizar" id="dHI-rb-kZj">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="sendOrder:" destination="urV-rv-oQd" id="Owq-lG-tnO"/>
                             </connections>
@@ -730,6 +758,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="preOrderTableView" destination="7x5-ts-qar" id="mF2-x4-G6R"/>
+                        <outlet property="restaurantLabel" destination="D2d-fY-Xf8" id="q0p-b2-MMN"/>
                         <outlet property="totalLabel" destination="GOA-dD-1Ay" id="dwT-5V-oab"/>
                     </connections>
                 </viewController>
@@ -853,6 +882,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rDj-DI-uFI">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.80784313730000001" green="0.12549019610000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -865,6 +898,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="315" height="542"/>
         <image name="logo" width="160" height="160"/>
         <image name="order" width="30" height="30"/>
         <image name="profile" width="30" height="30"/>

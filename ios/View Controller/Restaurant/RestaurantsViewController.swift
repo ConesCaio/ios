@@ -25,6 +25,11 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidAppear(animated)
         //unico lugar que foi possível fazer essa verificação
         self.login()
+        
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.restaurantsTableView.backgroundView = imageView
+        
     }
     
     //Após realizar configurações corretas sobre segurança, tirar isso!
@@ -58,11 +63,13 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         // Configure Cell
         cell.textLabel?.text = restaurants[indexPath.row].name
         
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     

@@ -32,6 +32,10 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         self.getOrderFromFirebase()
+        
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.allOrdersTableView.backgroundView = imageView
     }
     
     func getOrderFromFirebase() {
@@ -82,6 +86,8 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.createdAtLabel.text = dateFormatter.string(from: date!)
         
+        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     

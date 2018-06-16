@@ -19,6 +19,7 @@ class PreOrderCell: UITableViewCell {
 }
 
 class PreOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var restaurantLabel: UILabel!
     
     @IBOutlet weak var preOrderTableView: UITableView!
     
@@ -30,12 +31,22 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.totalLabel.text = String(Singleton.sharedInstance.getTotal())
+        
+        let aString = String(Singleton.sharedInstance.getTotal())
+        let newString = aString.replacingOccurrences(of: ".", with: ",")
+        self.totalLabel.text = newString
+        
         self.order = Singleton.sharedInstance.getOrder()
+        self.restaurantLabel.text = self.order.restaurantName
         self.preOrderTableView.reloadData()
+        
+        let backgroundImage = UIImage(named: "background")
+        let imageView = UIImageView(image: backgroundImage)
+        self.preOrderTableView.backgroundView = imageView
     }
     
     @IBAction func cancelOrder(_ sender: Any) {
+        Singleton.sharedInstance.clearData()
         self.dismissPreOrderView()
     }
     
@@ -64,6 +75,11 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
         return 1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let str = "Itens do pedido"
+        return str
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.order.orderItem.count
     }
@@ -77,6 +93,7 @@ class PreOrderViewController: UIViewController, UITableViewDelegate, UITableView
         cell.itemLabel.text = orderItem.menuItem?.name
         cell.observationsLabel.text = orderItem.observation
         
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
