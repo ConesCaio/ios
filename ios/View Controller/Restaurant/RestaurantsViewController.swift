@@ -9,6 +9,15 @@
 import UIKit
 import Firebase
 
+class RestaurantOrderCell: UITableViewCell {
+
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+}
+
 class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var restaurantsTableView: UITableView!
@@ -64,10 +73,10 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantOrderCell
         
         // Configure Cell
-        cell.textLabel?.text = restaurants[indexPath.row].name
+        cell.nameLabel.text = restaurants[indexPath.row].name
         
         cell.backgroundColor = UIColor.clear
         return cell

@@ -8,6 +8,11 @@
 
 import UIKit
 
+class ItensOrderCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+}
+
 class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var itemsTableView: UITableView!
@@ -58,8 +63,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = menuItems[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ItensOrderCell
+        cell.nameLabel.text = menuItems[indexPath.row].name
         
         cell.backgroundColor = UIColor.clear
         return cell

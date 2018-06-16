@@ -8,6 +8,11 @@
 
 import UIKit
 
+class CategoryOrderCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+}
+
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var categorysTableView: UITableView!
@@ -62,8 +67,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = self.categories[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CategoryOrderCell
+        cell.nameLabel.text = self.categories[indexPath.row].name
         
         cell.backgroundColor = UIColor.clear
         return cell
