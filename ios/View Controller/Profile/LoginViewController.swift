@@ -22,7 +22,13 @@ class LoginViewController: UIViewController {
             UserService().login(email: email, password: password) { (error) in
                 if let error = error {
                     print(error.localizedDescription)
-                    // GUI: mostrar pop-up de erro de acordo com ele
+                    if (error.localizedDescription == "The password is invalid or the user does not have a password.") {
+                        self.showAlert(title: "Erro", message: "Senha Inválida.")
+                    }
+                    if (error.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                        self.showAlert(title: "Erro", message: "Usuário não cadastado.")
+                    }
+                    
                 } else {
                     UserService().currentUser(completion: { (user, error) in
                         //set UserDefaults
@@ -32,5 +38,11 @@ class LoginViewController: UIViewController {
             }
         }
     }
-
+    
+    // MARK: ALERT
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }

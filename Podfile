@@ -8,6 +8,7 @@ target 'ios' do
   # Pods for ios
     pod 'Firebase'
     pod 'Firebase/Auth'
+    pod 'CPF-CNPJ-Validator'
   
   # Database
     pod 'Firebase/Core'
