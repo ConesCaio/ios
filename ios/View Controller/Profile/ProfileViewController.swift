@@ -44,6 +44,7 @@ class profileViewController: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                     // Gui: Mostrar mensagem de erro
+                    self.showAlert(title: "Erro", message: error.localizedDescription)
                     self.userNameField.text = self.user.name
                     self.cpfField.text = self.user.cpf
                     self.cellphoneField.text = self.user.phone

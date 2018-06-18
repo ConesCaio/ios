@@ -9,7 +9,7 @@
 import UIKit
 import CPF_CNPJ_Validator
 
-class CreateUserViewController: UIViewController {
+class CreateUserViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var newNameField: UITextField!
     @IBOutlet weak var newCPFField: UITextField!
@@ -19,6 +19,8 @@ class CreateUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        newCPFField.delegate = self
+        newCellPhoneField.delegate = self
     }
     
     @IBAction func createUser(_ sender: Any) {
@@ -46,7 +48,6 @@ class CreateUserViewController: UIViewController {
     
     func validate(value: String) -> Bool {
         let PHONE_REGEX = "^\\d{2}\\d{5}\\d{4}$"
-        
 //        let PHONE_REGEX = "^\\([1-9]{2}\\) [2-9][0-9]{3,4}\\-[0-9]{4}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
@@ -54,11 +55,15 @@ class CreateUserViewController: UIViewController {
     }
     
     func createUserFirebase() {
+        
+        
         if let name = self.newNameField.text, let cpf = self.newCPFField.text, let email = self.newEmailField.text, let password = self.newPasswordField.text, let phone = self.newCellPhoneField.text {
             UserService().createUser(name: name, email: email, cpf: cpf, phone: phone, password: password) { (document, error) in
                 if let error = error  {
                     print(error.localizedDescription)
-                    
+                    if (self.isValidName(testName: self.newNameField.text!) == false){
+                        self.showAlert(title: "Erro", message: "Digite um nome completo")
+                    }
                     if (error.localizedDescription == "The email address is badly formatted.") {
                         self.showAlert(title: "Erro", message: "Email não é válido")
                     }
@@ -72,6 +77,7 @@ class CreateUserViewController: UIViewController {
                 } else {
                     self.dismiss(animated: true, completion: nil)
                 }
+                
             }
         }
     }
@@ -87,4 +93,38 @@ class CreateUserViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 11
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
+    
+    func isValidName(testName: String) -> Bool{
+        let words = testName.components(separatedBy: " ")
+        lastCharSpace(last: testName)
+        if(testLetters(string: testName) == false) { return false }
+        if testName.contains("  "){ return false }
+        if (words.count < 2) { return false }
+        return true
+    }
+    
+    func lastCharSpace(last: String){
+        if( last.count != 0){
+            let lastChar = last.last!
+            if (lastChar == " " || lastChar == ".") {
+                self.newNameField.text = last.substring(to: last.index(before: last.endIndex))
+                //self.newNameField.text = String(last[..<lastChar])//.substring(to: last.index(before: last.endIndex))
+                
+                lastCharSpace(last: self.newNameField.text!)
+            }else { return }
+        }
+    }
+    
+    func testLetters(string: String) -> Bool{
+        let nameRegEx = "[a-zA-Z\\s]{2,}"
+        let auxNameTest = NSPredicate(format: "SELF MATCHES %@", nameRegEx)
+        let result = auxNameTest.evaluate(with: string)
+        return result
+    }
 }
