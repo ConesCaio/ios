@@ -22,6 +22,7 @@ class Order {
     var token: String?
     var userName: String?
     var userRef: DocumentReference?
+    var status: String?
     
     
     init() {
@@ -44,6 +45,7 @@ class Order {
         self.token = values["token"] as? String
         self.userName = values["userName"] as? String
         self.userRef = values["userRef"] as? DocumentReference
+        self.status = values["status"] as? String
     }
     
     func getValues() -> [String :Any] {
@@ -55,6 +57,7 @@ class Order {
             "token": self.token!,
             "userName": self.userName!,
             "userRef": self.userRef!,
+            "status": self.status!,
             ]
         
         return docData

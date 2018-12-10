@@ -70,12 +70,22 @@ class AllOrdersViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.tokenLabel.text = self.orders[indexPath.row].token
         cell.restaurantNameLabel.text = self.orders[indexPath.row].restaurantName
         
-        if self.orders[indexPath.row].delivered! {
-            cell.deliveredLabel.text = "Entregue"
-            cell.deliveredLabel.textColor = UIColor.blue
+        if (self.orders[indexPath.row].delivered!) == true {
+            cell.deliveredLabel.text = "Retirado"
+            cell.deliveredLabel.textColor = UIColor(red:0.13, green:0.55, blue:0.13, alpha:1.0)
         } else {
-            cell.deliveredLabel.text = "Aguardando"
-            cell.deliveredLabel.textColor = UIColor.red
+            if self.orders[indexPath.row].status == "" {
+                cell.deliveredLabel.text = self.orders[indexPath.row].status
+                cell.deliveredLabel.textColor = UIColor.black
+            }
+            if (self.orders[indexPath.row].status == "Preparando") {
+                cell.deliveredLabel.text = self.orders[indexPath.row].status
+                cell.deliveredLabel.textColor = UIColor(red:1.00, green:0.39, blue:0.28, alpha:1.0)
+            }
+            if self.orders[indexPath.row].status == "Pronto" {
+                cell.deliveredLabel.text = self.orders[indexPath.row].status
+                cell.deliveredLabel.textColor = UIColor(red:0.85, green:0.65, blue:0.13, alpha:1.0)
+            }
         }
         
         let dateFormatter = DateFormatter()
